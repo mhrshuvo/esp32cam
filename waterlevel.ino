@@ -1,4 +1,6 @@
 String getWaterlevel(){
-  int value = analogRead(WLVL_PIN);
-   return  String(value);
+  int val = analogRead(WLVL_PIN);
+  Serial.println(val);
+  String v = "Water: " + String (val) + " mm \n";
+  return v;
 }

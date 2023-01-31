@@ -11,7 +11,7 @@
 #include <ArduinoJson.h>
 
 int VIBRATION_SENSOR_PIN = 12;
-int RELAY_PIN = 4;
+int RELAY_PIN = 02;
 int WLVL_PIN = 13;
 
 // Initialize Telegram BOT
@@ -181,9 +181,9 @@ String sendPhotoTelegram() {
 void setup(){
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); 
   // Init Serial Monitor
-  pinMode( VIBRATION_SENSOR_PIN, INPUT_PULLUP);
+  pinMode( VIBRATION_SENSOR_PIN, INPUT);
   pinMode(RELAY_PIN,OUTPUT);
-  pinMode( WLVL_PIN, INPUT_PULLUP);
+  pinMode( WLVL_PIN, INPUT);
   
   Serial.begin(115200);
 
@@ -224,8 +224,10 @@ void loop() {
   int a = digitalRead(VIBRATION_SENSOR_PIN);
 
   if(a==1){
-    Serial.print(a);
-        alertManagement();
+        Serial.print(a);
+         
+         alertManagement();
+//         digitalWrite(RELAY_PIN,HIGH );
   }
   
   if (sendPhoto) {
